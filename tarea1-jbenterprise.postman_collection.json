@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "5f8fd4c5-a8af-4b8a-877f-9e4a9ea14fd6",
+		"name": "Almacenar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36183685",
+		"_collection_link": "https://manuel-5950.postman.co/workspace/d0861516-edfe-44eb-a0a4-90ddf22738c2/collection/36183685-5f8fd4c5-a8af-4b8a-877f-9e4a9ea14fd6?action=share&source=collection_link&creator=36183685"
+	},
+	"item": [
+		{
+			"name": "Crear Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var response = pm.response.json();\r",
+							"pm.collectionVariables.set(\"PROYECT_ID\", response.Id);\r",
+							"console.log(\"PROYECT_ID\",pm.collectionVariables.get(\"PROYECT_ID\"));\r",
+							"\r",
+							"//VERIFICACIONES\r",
+							"pm.test(\" code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify PROYECT name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Content).to.eql(\"New Item\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"verify PROYECT icon\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Checked).to.eql(false);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Content\":\"New Item\"\r\n    \r\n\r\n}\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://todo.ly/api/items.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"items.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//VERIFICACIONES\r",
+							"pm.test(\" code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"verify PROYECT icon\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Checked).to.eql(true);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{   \r\n    \r\n    \"Checked\": true\r\n    \r\n    \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://todo.ly/api/items/{{PROYECT_ID}}.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"items",
+						"{{PROYECT_ID}}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//VERIFICACIONES\r",
+							"pm.test(\" code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"verify PROYECT icon\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Checked).to.eql(true);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://todo.ly/api/items/{{PROYECT_ID}}.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"items",
+						"{{PROYECT_ID}}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//VERIFICACIONES\r",
+							"pm.test(\" code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"verify PROYECT icon\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Checked).to.eql(true);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://todo.ly/api/items/{{PROYECT_ID}}.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"items",
+						"{{PROYECT_ID}}.json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "Arrancar6",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "junio2026espada1@autoapi.com",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PROYECT_ID",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "PROYECT_ID",
+			"value": ""
+		}
+	]
+}
