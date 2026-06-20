@@ -38,4 +38,4 @@ jobs:
 
     - name: run test
 
-      run: newman run Projects.postman_collection.json
+      run: newman run tarea1-jbenterprise.postman_collection.json
